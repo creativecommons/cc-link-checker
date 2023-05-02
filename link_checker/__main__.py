@@ -337,6 +337,15 @@ def check_legalcode(args):
         valid_anchors, valid_links, context_printed = get_scrapable_links(
             args, base_url, links_found, context, context_printed
         )
+        if ".txt" in license_name:
+            plaintext_license = license_name.replace(".txt", "")
+            licenses = plaintext_license.split("_")
+            if len(licenses) == 2:
+                plaintext_url = "{}/licenses/{}/{}/legalcode.txt".format(
+                    DEFAULT_ROOT_URL, licenses[0], licenses[1]
+                )
+                valid_links.append(plaintext_url)
+                valid_anchors.append("")
         if valid_links:
             memoized_results = get_memoized_result(valid_links, valid_anchors)
             stored_links = memoized_results[0]

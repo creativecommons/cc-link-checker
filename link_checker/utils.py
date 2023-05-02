@@ -130,10 +130,18 @@ def get_github_legalcode():
     # non-.html files
     for version in TEST_ORDER:
         for name in license_names_unordered:
-            if ".html" in name.string and version in name.string:
+            if (
+                ".html" in name.string
+                and version in name.string
+                or (".txt" in name.string and version in name.string)
+            ):
                 license_names.append(name)
     for name in license_names_unordered:
-        if ".html" in name.string and name not in license_names:
+        if (
+            ".html" in name.string
+            and name not in license_names
+            or (".txt" in name.string and version in name.string)
+        ):
             license_names.append(name)
     return license_names
 
@@ -161,10 +169,18 @@ def get_local_legalcode():
     # non-.html files
     for version in TEST_ORDER:
         for name in license_names_unordered:
-            if ".html" in name and version in name:
+            if (
+                ".html" in name
+                and version in name
+                or (".txt" in name.string and version in name.string)
+            ):
                 license_names.append(name)
     for name in license_names_unordered:
-        if ".html" in name and name not in license_names:
+        if (
+            ".html" in name
+            and name not in license_names
+            or (".txt" in name.string and version in name.string)
+        ):
             license_names.append(name)
     return license_names
 
